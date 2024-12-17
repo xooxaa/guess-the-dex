@@ -1,0 +1,22 @@
+@if (currentPokemon()) {
+<h2>Guess the</h2>
+<img src="pokedex.png" alt="PokeDex" class="pokedex-logo" />
+
+<div class="pokemon-card">
+  <img
+    [src]="currentPokemon()?.sprite"
+    alt="{{ currentPokemon()?.name }}"
+    class="pokemon-image"
+  />
+  <h1>{{ currentPokemon()?.name | uppercase }}</h1>
+  <p>Height: {{ currentPokemon()?.height }} m</p>
+  <p>Weight: {{ currentPokemon()?.weight }} kg</p>
+  <p>Types: {{ currentPokemon()?.types?.join(", ") }}</p>
+</div>
+
+<div class="guess-section">
+  <label for="guess">Your Guess:</label>
+  <input type="number" id="guess" />
+  <button>Submit Guess</button>
+</div>
+}
