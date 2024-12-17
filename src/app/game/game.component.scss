@@ -1,19 +1,20 @@
 h2 {
-  padding-top: 3rem;
-  font-size: 2rem;
+  padding-top: 1rem;
+  font-size: 1.5rem;
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 2rem;
 }
 
 .pokedex-logo {
   margin: 0 auto;
+  height: 100px;
 }
 
 .pokemon-image {
-  margin: 2rem auto;
-  height: 300px;
+  margin: 0.5rem auto;
+  height: 170px;
 }
 
 .pokemon-stats {
@@ -26,7 +27,7 @@ h1 {
 }
 
 .stat-icon {
-  height: 32px;
+  height: 24px;
 }
 
 .pokemon-types {
@@ -37,6 +38,7 @@ h1 {
   margin-bottom: 2rem;
 
   & > * {
+    font-size: 0.85rem;
     padding: 0.25rem 0.75rem;
     border-radius: 100px;
     color: white;
@@ -93,9 +95,9 @@ input[type="number"] {
 }
 
 .guess-section input {
-  font-size: 2rem;
+  font-size: 1.75rem;
   text-align: center;
-  width: 200px;
+  width: 150px;
   background: transparent;
   border: 1px solid white;
   box-shadow: 0 2px 0 2px #2d2c95, inset 0 2px 0 2px #2d2c95, 0 0 0 2px #2d2c95,
@@ -105,7 +107,7 @@ input[type="number"] {
 
 .guess-section button,
 .feedback-section button {
-  padding: 0.25rem 1rem;
+  padding: 0.1rem 0.5rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
