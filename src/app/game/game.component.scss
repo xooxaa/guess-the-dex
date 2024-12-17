@@ -1,5 +1,10 @@
 h2 {
-  margin-top: 3rem;
+  padding-top: 3rem;
+  font-size: 2rem;
+}
+
+h1 {
+  font-size: 3rem;
 }
 
 .pokedex-logo {
@@ -9,4 +14,126 @@ h2 {
 .pokemon-image {
   margin: 2rem auto;
   height: 300px;
+}
+
+.pokemon-stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  margin-bottom: 0.5rem;
+}
+
+.stat-icon {
+  height: 32px;
+}
+
+.pokemon-types {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+
+  & > * {
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+    color: white;
+  }
+}
+
+$poke-type-colors: (
+  flying: #8fa9de,
+  ghost: #5269ad,
+  special: #1f4e94,
+  dragon: #0b6dc3,
+  water: #5090d6,
+  steel: #5a8ea2,
+  ice: #73cec0,
+  grass: #63bc5a,
+  bug: #91c12f,
+  electric: #f4d23c,
+  fire: #ff9d55,
+  ground: #d97845,
+  psychic: #fa7179,
+  physical: #ea551e,
+  fighting: #ce416b,
+  fairy: #ec8fe6,
+  poison: #aa6bc8,
+  normal: #929da3,
+  status: #999999,
+  dark: #5a5465,
+  rock: #c5b78c,
+);
+
+@each $type, $color in $poke-type-colors {
+  .#{$type} {
+    background-color: $color;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.guess-section {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.guess-section input {
+  font-size: 2rem;
+  text-align: center;
+  width: 200px;
+  background: transparent;
+  border: 1px solid white;
+  box-shadow: 0 2px 0 2px #2d2c95, inset 0 2px 0 2px #2d2c95, 0 0 0 2px #2d2c95,
+    inset 0 0 0 2px #2d2c95;
+  user-select: none;
+}
+
+.guess-section button,
+.feedback-section button {
+  padding: 0.25rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  outline: 1px solid #2d2c95;
+  border: none;
+  border-radius: 2px;
+  background-color: #ffce31;
+}
+
+.guess-section button:hover,
+.feedback-section button:hover {
+  cursor: pointer;
+  outline: 3px solid #2d2c95;
+  background-color: #ffd64e;
+}
+
+.guess-section button img,
+.feedback-section button img {
+  height: 40px;
+}
+
+.feedback-section {
+  margin-top: 3rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }

@@ -1,7 +1,7 @@
-@if (currentPokemon()) {
 <h2>Guess the</h2>
 <img src="pokedex.png" alt="PokeDex" class="pokedex-logo" />
 
+@if (feedback() === "") { @if (currentPokemon()) {
 <div class="pokemon-card">
   <img
     [src]="currentPokemon()?.sprite"
@@ -9,14 +9,42 @@
     class="pokemon-image"
   />
   <h1>{{ currentPokemon()?.name | uppercase }}</h1>
-  <p>Height: {{ currentPokemon()?.height }} m</p>
-  <p>Weight: {{ currentPokemon()?.weight }} kg</p>
-  <p>Types: {{ currentPokemon()?.types?.join(", ") }}</p>
+  <div class="pokemon-stats">
+    <img src="height.png" alt="Height" class="stat-icon" />
+    <p>{{ currentPokemon()?.height }} m</p>
+    <img src="weight.png" alt="Weight" class="stat-icon" />
+    <p>{{ currentPokemon()?.weight }} kg</p>
+  </div>
+
+  <div class="pokemon-types">
+    @for (type of currentPokemon()?.types; track $index) {
+    <p [className]="type">{{ type }}</p>
+    }
+  </div>
 </div>
 
 <div class="guess-section">
-  <label for="guess">Your Guess:</label>
-  <input type="number" id="guess" />
-  <button>Submit Guess</button>
+  <input type="number" id="guess" [formControl]="guess" />
+  <button
+    (click)="makeGuess()"
+    [disabled]="pokeDexService.pokeResource.isLoading()"
+  >
+    <img src="arrow_right.png" alt="Arrow Right" />
+    Guess
+  </button>
+</div>
+} } @else {
+<div class="feedback-section">
+  <p>
+    {{ feedback() }}
+  </p>
+
+  <button
+    (click)="newPokemon()"
+    [disabled]="pokeDexService.pokeResource.isLoading()"
+  >
+    <img src="arrow_right.png" alt="Arrow Right" />
+    New Pokemon
+  </button>
 </div>
 }
