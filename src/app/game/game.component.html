@@ -24,14 +24,14 @@
 </div>
 
 <div class="guess-section">
-  <input type="number" id="guess" [formControl]="guess" />
+  @for (option of options(); track $index) {
   <button
-    (click)="makeGuess()"
+    (click)="makeGuess(option)"
     [disabled]="pokeDexService.pokeResource.isLoading()"
   >
-    <img src="arrow_right.png" alt="Arrow Right" />
-    Guess
+    {{ option }}
   </button>
+  }
 </div>
 } } @else {
 <div class="feedback-section">
@@ -48,3 +48,20 @@
   </button>
 </div>
 }
+
+<div class="caught-pokemon-list">
+  @if (gameService.caughtPokemons().length > 0) {
+  <h3>Caught Pokémon ({{ gameService.caughtPokemons().length }})</h3>
+  <ul>
+    @for (pokemon of gameService.caughtPokemons(); track pokemon.id) {
+    <li>
+      <span class="pokemon-id">#{{ pokemon.id }}</span>
+      <span>{{ pokemon.name | uppercase }}</span>
+    </li>
+    }
+  </ul>
+  } @else {
+  <h3>Caught Pokémon</h3>
+  <p>You haven't caught any Pokémon yet. Start playing to catch them all!</p>
+  }
+</div>

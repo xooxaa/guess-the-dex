@@ -1,5 +1,14 @@
 import { Injectable, resource, signal } from '@angular/core';
-import { Pokemon } from './poekedex.types';
+
+export interface Pokemon {
+  name: string;
+  id: number;
+  generation: number;
+  weight: number;
+  height: number;
+  sprite: string;
+  types: string[];
+}
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +30,7 @@ export class PokeDexService {
     9: { min: 906, max: 1025 },
   };
 
-  private pokeId = signal<number>(Math.floor(Math.random() * 1025) + 1);
+  private pokeId = signal<number>(Math.floor(Math.random() * 151) + 1);
 
   public pokeResource = resource({
     request: this.pokeId,
