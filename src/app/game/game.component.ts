@@ -76,4 +76,9 @@ export class GameComponent {
 
     this.options.set([...options].sort(() => Math.random() - 0.5));
   }
+
+  restartGame() {
+    this.gameService.resetCaughtPokemon();
+    this.newPokemon();
+  }
 }

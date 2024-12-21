@@ -21,6 +21,11 @@ export class GameService {
     this.caughtPokemonsSignal.set(sortedPokemon);
   }
 
+  private clearPokemon() {
+    localStorage.removeItem(this.STORAGE_KEY);
+    this.caughtPokemonsSignal.set([]);
+  }
+
   catchPokemon(pokemon: Pokemon): void {
     const caught = this.caughtPokemonsSignal();
     if (!caught.some((p) => p.id === pokemon.id)) {
@@ -35,5 +40,9 @@ export class GameService {
     const allGen1Ids = Array.from({ length: 151 }, (_, i) => i + 1);
 
     return allGen1Ids.filter((id) => !caughtIds.includes(id));
+  }
+
+  resetCaughtPokemon() {
+    this.clearPokemon();
   }
 }

@@ -39,6 +39,8 @@
     {{ feedback() }}
   </p>
 
+  @if (score() < 151) {
+
   <button
     (click)="newPokemon()"
     [disabled]="pokeDexService.pokeResource.isLoading()"
@@ -46,12 +48,22 @@
     <img src="arrow_right.png" alt="Arrow Right" />
     New Pokemon
   </button>
+  } @else {
+  <button
+    (click)="restartGame()"
+    [disabled]="pokeDexService.pokeResource.isLoading()"
+  >
+    <img src="arrow_right.png" alt="Arrow Right" />
+    Reset PokeDex
+  </button>
+
+  }
 </div>
 }
 
 <div class="caught-pokemon-list">
+  <h3>Caught Pokémon ({{ score() }})</h3>
   @if (gameService.caughtPokemons().length > 0) {
-  <h3>Caught Pokémon ({{ gameService.caughtPokemons().length }})</h3>
   <ul>
     @for (pokemon of gameService.caughtPokemons(); track pokemon.id) {
     <li>
@@ -61,7 +73,6 @@
     }
   </ul>
   } @else {
-  <h3>Caught Pokémon</h3>
   <p>You haven't caught any Pokémon yet. Start playing to catch them all!</p>
   }
 </div>
