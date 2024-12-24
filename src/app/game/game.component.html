@@ -1,5 +1,20 @@
-<h2>Guess the</h2>
-<img src="pokedex.png" alt="PokeDex" class="pokedex-logo" />
+<!-- <img
+  (click)="changeLanguage()"
+  [src]="this.translateService.currentLang + '.png'"
+  [alt]="this.translateService.currentLang"
+/> -->
+
+<div class="header">
+  <img
+    class="settings-icon"
+    src="settings.png"
+    alt="Settings"
+    (click)="changeLanguage()"
+  />
+
+  <h2>Guess the</h2>
+  <img src="pokedex.png" alt="PokeDex" class="pokedex-logo" />
+</div>
 
 @if (feedback() === "") { @if (currentPokemon()) {
 <div class="pokemon-card">
@@ -8,7 +23,9 @@
     alt="{{ currentPokemon()?.name }}"
     class="pokemon-image"
   />
-  <h1>{{ currentPokemon()?.name | uppercase }}</h1>
+  <h1>
+    {{ "POKEMON_NAMES." + (currentPokemon()?.name | uppercase) | translate }}
+  </h1>
   <div class="pokemon-stats">
     <img src="height.png" alt="Height" class="stat-icon" />
     <p>{{ currentPokemon()?.height }} m</p>
@@ -62,13 +79,15 @@
 }
 
 <div class="caught-pokemon-list">
-  <h3>Caught Pokémon ({{ score() }})</h3>
+  <h3>Caught Pokémon ({{ gameService.caughtPokemons().length }})</h3>
   @if (gameService.caughtPokemons().length > 0) {
   <ul>
     @for (pokemon of gameService.caughtPokemons(); track pokemon.id) {
     <li>
       <span class="pokemon-id">#{{ pokemon.id }}</span>
-      <span>{{ pokemon.name | uppercase }}</span>
+      <span>
+        {{ "POKEMON_NAMES." + (pokemon.name | uppercase) | translate }}
+      </span>
     </li>
     }
   </ul>

@@ -33,6 +33,16 @@ h1 {
   height: 24px;
 }
 
+.header {
+  position: relative;
+}
+.settings-icon {
+  position: absolute;
+  right: 24px;
+  top: 48px;
+  height: 48px;
+}
+
 .pokemon-types {
   display: flex;
   justify-content: center;
@@ -97,23 +107,13 @@ input[type="number"] {
   align-items: center;
 }
 
-.guess-section input {
-  font-size: 1.75rem;
-  text-align: center;
-  width: 150px;
-  background: transparent;
-  border: 1px solid white;
-  box-shadow: 0 2px 0 2px #2d2c95, inset 0 2px 0 2px #2d2c95, 0 0 0 2px #2d2c95,
-    inset 0 0 0 2px #2d2c95;
-  user-select: none;
-}
-
 .guess-section button,
 .feedback-section button {
-  padding: 0.1rem 0.5rem;
+  padding: 0.15rem 0.75rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-size: 1.75rem;
 
   outline: 1px solid #2d2c95;
   border: none;

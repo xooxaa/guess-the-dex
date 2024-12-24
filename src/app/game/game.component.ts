@@ -1,32 +1,45 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { UpperCasePipe } from '@angular/common';
+import { TranslateService } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { PokeDexService } from '../services/pokedex.service';
 import { GameService } from '../services/game.service';
+import translationsEN from '../../../public/i18n/en.json';
+import translationsDE from '../../../public/i18n/de.json';
 
 @Component({
   selector: 'app-game',
-  imports: [ReactiveFormsModule, UpperCasePipe],
+  imports: [ReactiveFormsModule, UpperCasePipe, TranslatePipe],
   templateUrl: './game.component.html',
   styleUrl: './game.component.scss',
 })
 export class GameComponent {
   readonly pokeDexService = inject(PokeDexService);
   readonly gameService = inject(GameService);
+  readonly translateService = inject(TranslateService);
 
   currentPokemon = computed(() => {
     return this.pokeDexService.pokeResource.value();
   });
-
-  constructor() {
-    this.newPokemon();
-  }
 
   options = signal<number[]>([]);
   feedback = signal<string>('');
   score = computed(() => {
     return this.gameService.caughtPokemons().length;
   });
+
+  constructor(private translate: TranslateService) {
+    this.translate.setTranslation('en', translationsEN);
+    this.translate.setTranslation('de', translationsDE);
+    this.translate.use('en');
+
+    this.newPokemon();
+  }
+
+  changeLanguage() {
+    this.translate.use(this.translate.currentLang === 'en' ? 'de' : 'en');
+  }
 
   makeGuess(selectedId: number) {
     const current = this.currentPokemon();
